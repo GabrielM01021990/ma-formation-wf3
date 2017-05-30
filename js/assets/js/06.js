@@ -1,7 +1,7 @@
 /* ------------------------------------- Les fonctions ---------------------------------------- */
 
 // -- Déclarer une fonction
-// -- Cette focntion ne retourne aucune valeur
+// -- Cette fonction ne retourne aucune valeur
 
 function DitBonjour() {
     alert("Bonjour!"); // Lors de l'appel de la fonction, les instructions sont exécutées
