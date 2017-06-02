@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!--Consigne : 
+
+    1 Définir une structure HTML et CSS pour afficher des articles.
+    2 Afficher une liste d'articles a partir de l'API https://jsonplaceholder.typicode.com/posts
+    3 Afficher uniquement les 5 premiers articles
+    4 Mettre en place Markjs.io afin de surligner les mots dans les différents articles à l'aide d'un champ input.-->
+
+    <style>
+
+
+        main {      width              : 900px;
+                    height             : auto;
+                    margin             : 0 auto;
+                                                        
+}
+
+        section {   width              : 100%;
+                    height             : auto;
+                    min-height         : 200px;
+                    margin-bottom      : 10px;
+                    background-image   : linear-gradient(0deg, #CCC, #FFF);
+                    border             : 1px solid #CCC;
+            
+}
+        h3{
+
+                font-family            : Arial, Helvetica, sans-serif;
+                font-weight            : normal;
+                text-align             : center;
+                color                  : #000;
+
+}
+
+        article{
+
+            font-family                : Arial, Helvetica, sans-serif;
+            font-size                  : 12px;
+            padding                    : 20px;
+}
+
+      
+    </style>
+
+</head>
+
+
+<body>
+
+    <main>
+
+        <input type="text" placeholder="saisissez un terme a surligner..." id="markjs"/>
+        <!--<section>
+            <header>
+                <h3>Mon titre</h3>
+            </header>
+            <article> Mon article</article>
+        </section>-->
+      
+
+    </main>
+
+     <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+
+    
+<script src= "https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.10.1/jquery.mark.js"
+></script>
+
+
+    <script>
+   // -- Dom is ready!
+    $(function(){
+        
+        // -- 1 Récupérer les articles
+        $.getJSON('https://jsonplaceholder.typicode.com/posts', function(articles) {
+           // -- Apercu dans la console
+           console.log(articles);
+           // - A premiere solution : la bouche for
+           for(i = 0 ; i < 5 ; i++) {
+
+               // Je recupere a chaque itération de ma boucle un objet (article)
+               let article = articles[i];
+            
+              // Affichage dans ma page HTML
+              $(`<section>
+            <header>
+                <h3>${article.title}</h3>
+            </header>
+            <article>${article.body}</article>
+        </section>`).appendTo($('main'));
+
+        // Solution 2 : bouche Each
+
+      /*  $.each(articles, function(i, article){
+
+            // Affichage dans ma page HTML
+              $(`<section>
+            <header>
+                <h3>${article.title}</h3>
+            </header>
+            <article>${article.body}</article>
+        </section>`).appendTo($('main'));
+
+        if(i== 5){
+            return false;
+        }
+        }); */
+        
+
+
+             }
+        });
+        // Fin Json
+
+        //Mark JS
+        $('#markjs').on('input', function(e){
+
+            // Cette fonction s'execute chaque fois que l'user leve son doigt d'une touche du clavier
+            let keyword=$(this).val();  
+
+            // -- 
+
+            $('section').unmark().mark(keyword);
+        });
+
+    }); // Fin de Jquery
+
+    </script>
+
+
+
+    
+</body>
+</html>

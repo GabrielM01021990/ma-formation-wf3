@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Les Animations en Jquery</title>
+    <style>
+        .box {padding : 10px;}
+        .carre {position : relative; width: 100px; height: 100px; background: #09f; }
+    </style>
+
+</head>
+<body>
+
+    <div class="box">
+        <p>
+            <button id="play">Lancer</button>
+        </p>
+        <div class="carre"></div>
+    </div>
+
+    
+
+
+     <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+
+
+<!--JQuery dispose de raccourcis pour les animations les plus courantes : 
+fadeIn()
+fadeOut()
+slideDown()
+slideUp()-->
+
+
+
+    <script>
+$( "#play" ).click(function() {
+  $( ".carre" ).animate({
+    width: "250px", // += "150px" incrémente la valeur 150 a chaque clic.
+    height: "250px",
+    marginLeft: "250px",
+  }, 1800,
+  function(){
+      alert("Good")
+  }
+   );
+});
+</script>  
+
+
+
+
+</body>
+</html>
