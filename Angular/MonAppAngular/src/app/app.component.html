@@ -1,0 +1,43 @@
+<header>
+    <nav class="navbar navbar-inverse">
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand">Mes contacts</a>
+      </div>
+    </nav>
+  </header>
+  <div class="row">
+    <div class="col-sm-4">
+      <div *ngIf="Contacts">
+        <ul class="list-group list-contacts">
+          <li class="list-group-item" *ngFor="let contact of Contacts" 
+          (click)="choisirUnContact(contact)" [class.active]="contact === contactActif">
+            {{contact.fullname}} <i>({{contact.username}})</i>
+          </li>
+
+        </ul> 
+      </div> <!--/ifcontact-->
+    </div> <!--/ifcol sm4-->
+    <div class="col-sm-8">
+ 
+      <!-- Appel de notre composant app-profil-contact -->
+      <app-profil-contact [contact]="contactActif"></app-profil-contact>
+
+
+
+  <div class="jumbotron" *ngIf="!contactActif">
+  <span class="glyphicon glyphicon-hand-left"></span>
+  <h2> Bienvenue, choisis un contact</h2>
+    </div>
+  </div>
+
+  
+  
+  <!-- <p>Bonjour, {{contact.fullname}}. <br/>Votre username est:  {{contact.username}}</p> 
+
+  <div *ngFor="let contact of Contacts">
+    {{contact.fullname}} <i>({{contact.username}})</i>
+  </div> -->
+
+  <footer class="text-center">
+    Copyright &copy; 2017
+  </footer>
